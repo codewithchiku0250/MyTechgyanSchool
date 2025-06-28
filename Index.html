@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Techgyan School - Raghunath Pur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero .location {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .section {
+            padding: 80px 0;
+            background: white;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .inspiration {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .inspiration::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .inspiration-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .inspiration img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .inspiration img:hover {
+            transform: scale(1.05);
+        }
+
+        .inspiration h2 {
+            color: white;
+        }
+
+        .inspiration h2::after {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .program {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .program:hover {
+            transform: translateY(-5px);
+        }
+
+        .program h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact {
+            background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2::after {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">My Techgyan School</a>
+            <ul class="nav-links">
+                <li><a href="#home">होम</a></li>
+                <li><a href="#about">हमारे बारे में</a></li>
+                <li><a href="#programs">प्रोग्राम</a></li>
+                <li><a href="#contact">संपर्क</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>My Techgyan School</h1>
+                <p class="subtitle">जहाँ Technology की शुरुआत होती है बचपन से</p>
+                <p class="location">📍 Raghunath Pur में स्थित</p>
+                <a href="#about" class="cta-button">हमारे बारे में जानें</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="about" class="section">
+                <h2>हमारा मिशन</h2>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">💻</div>
+                        <h3>Technology से शुरुआत</h3>
+                        <p>बच्चों को शुरुआत से ही आधुनिक Technology tools सिखाए जाते हैं। Computer, Coding, Digital Skills - सभी कुछ बचपन से ही।</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Practical Learning</h3>
+                        <p>सिर्फ किताबी ज्ञान नहीं, बल्कि hands-on experience के साथ बच्चे सीखते हैं। Real projects बनाते हैं और समझते हैं।</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌟</div>
+                        <h3>Future Ready</h3>
+                        <p>आज के Digital World के लिए बच्चों को तैयार करते हैं। AI, Robotics, Programming - सभी कुछ step by step।</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section inspiration">
+                <div class="inspiration-content">
+                    <h2>हमारी प्रेरणा</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">IIT Delhi की तरह Excellence की राह पर</p>
+                    <img src="IITD.jpg.jpg" alt="IIT Delhi Campus - हमारी प्रेरणा" />
+                    <p style="font-size: 1.1rem; margin-top: 2rem; opacity: 0.9;">
+                        भारत के सबसे बेहतरीन Technical Institutes की तरह, हम भी अपने students को 
+                        World Class Education देने के लिए committed हैं। हमारा सपना है कि Raghunath Pur 
+                        के बच्चे भी IIT Delhi जैसे prestigious institutes में जाकर देश का नाम रोशन करें।
+                    </p>
+                </div>
+            </section>
+
+            <section id="programs" class="section">
+                <h2>हमारे Programs</h2>
+                <div class="programs">
+                    <div class="program">
+                        <h3>🖥️ Computer Basics</h3>
+                        <p>Mouse, Keyboard से शुरू करके MS Office तक की complete training।</p>
+                    </div>
+                    <div class="program">
+                        <h3>🎨 Creative Design</h3>
+                        <p>Photoshop, Drawing tools से अपनी creativity को express करना सीखें।</p>
+                    </div>
+                    <div class="program">
+                        <h3>🔧 Basic Programming</h3>
+                        <p>Scratch से शुरू करके Python तक का programming journey।</p>
+                    </div>
+                    <div class="program">
+                        <h3>🌐 Internet & Digital Skills</h3>
+                        <p>Safe internet usage, Email, Online research और Digital citizenship।</p>
+                    </div>
+                    <div class="program">
+                        <h3>🤖 Robotics Basics</h3>
+                        <p>Simple robots बनाना और programming करना सीखें।</p>
+                    </div>
+                    <div class="program">
+                        <h3>📱 Mobile App Development</h3>
+                        <p>Simple mobile apps बनाना और publish करना सीखें।</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section contact">
+                <h2>संपर्क करें</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📍 पता</h3>
+                        <p>My Techgyan School<br>Raghunath Pur<br>Bihar, India</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📞 फोन</h3>
+                        <p>+91 9798049396<br>Admission के लिए कॉल करें</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>✉️ ईमेल</h3>
+                        <p>info@mytechgyanschool.com<br>admissions@mytechgyanschool.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>⏰ समय</h3>
+                        <p>सोमवार - शनिवार<br>सुबह 9:00 - शाम 5:00</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Techgyan School, Raghunath Pur. सभी अधिकार सुरक्षित।</p>
+            <p style="margin-top: 1rem; opacity: 0.8;">
+                🚀 "Technology से शुरुआत, Excellence तक का सफर" 🚀
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature, .program, .contact-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.feature, .program').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) rotate(1deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
